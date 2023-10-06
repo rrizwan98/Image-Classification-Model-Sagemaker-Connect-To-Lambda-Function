@@ -67,8 +67,7 @@ if __name__ == '__main__':
     }
     
     # print(train_generator.class_indices)
-    
-    input_shape = (220, 220, 3)
+
     
 #     used ResNet50V2 model
     
@@ -121,5 +120,6 @@ if __name__ == '__main__':
                               validation_data=valid_generator, validation_steps=validation_steps,callbacks=callbacks_list)
     
     # save model
-    model.save(os.path.join(args.model_dir, '1'), 'my_model.h5')
-#     model.save(f'{args.model_dir}/1')
+    # save model for Tensorflow Serving
+    save_model(model, os.path.join(model_dir, '1'), save_format='tf')
+    print("Model successfully saved at: {}".format(model_dir))
